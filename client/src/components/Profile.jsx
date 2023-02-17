@@ -1,38 +1,33 @@
 import Navbar from "./Navbar";
 import ChangePassword from "./ChangePassword";
 import NavigateDetailProperty from "./NavbarDetailProperty";
-// import HomeLogin from "../pages/HomeLogin";
 import { Button, Container, Row, Col } from "react-bootstrap";
-import React, { useContext, useEffect,useState } from "react";
-// IMPORT IMAGES
+import React, { useContext, useEffect, useState } from "react";
+
 import Name from "../assets/images/IP.png";
-import Ema from "../assets/images/Email.png";
+import Email from "../assets/images/Email.png";
 import Phone from "../assets/images/Phone.png";
 import Place from "../assets/images/Tendant.png";
-import Robin from "../assets/images/robin.jpg";
+import Image from "../assets/images/img.jpg";
 import Ad from "../assets/images/Lock.jpg";
 import G from "../assets/images/Gender.png";
 import Password from "../assets/images/Pass.png";
 import { UserContext } from "../context/userContext";
-// import ChangeImage from "./ChangeImage"
-// import home from "../pages/Home";
-// import { Pass } from "react-bootstrap-icons";
 
 export default function Profile(props) {
   useEffect(() => {
     document.body.style.background = "rgba(196, 196, 196, 0.25)";
   });
-  
+
   const [state, useState] = useContext(UserContext);
-  const[show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
   console.log(state.user);
   const [modalShow, setModalShow] = useState(false);
 
   return (
     <div className="" style={{ marginTop: "9rem" }}>
       {/* <HomeLogin /> */}
-      <Navbar
-      />
+      <Navbar />
       <Container className="">
         <Row className="justify-content-between bg-white py-3">
           <Col className="d-flex flex-column gap-3" sm={4}>
@@ -47,7 +42,7 @@ export default function Profile(props) {
               </div>
             </div>
             <div className="d-flex align-items-center gap-3">
-              <img width={40} src={Ema} alt="" />
+              <img width={40} src={Email} alt="" />
               <div className="d-flex flex-column">
                 <span className="p-0 m-0 fw-bold">{state.user?.email}</span>
                 <span className="fs14 text-secondary">Email</span>
@@ -71,10 +66,6 @@ export default function Profile(props) {
                 </div>
               </div>
             </div>
-            {/* <div className="d-flex flex-column">
-                <span className="p-0 m-0" fw-bold>Change Password</span>
-                <span className="fs14 text-secondary">Password</span>
-              </div> */}
             <div className="d-flex align-items-center gap-3">
               <img width={39} src={Place} alt="" />
               <div className="d-flex flex-column">
@@ -108,14 +99,15 @@ export default function Profile(props) {
           </Col>
           <Col className=" d-flex flex-column gap-3 px-3 me-2" sm={4}>
             <div>
-              <img className="w-100 rounded pt-4" src={Robin} alt="" />
+              <img className="w-100 rounded pt-4" src={Image} alt="" />
             </div>
             <div>
-              <Button className="w-100" onClick={() => setShow(true)} >Change Foto Profile</Button>
+              <Button className="w-100" onClick={() => setShow(true)}>
+                Change Foto Profile
+              </Button>
             </div>
           </Col>
         </Row>
-        {/* <ChangeImage show={show} onHide={() => setShow(false)}/> */}
       </Container>
     </div>
   );

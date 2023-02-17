@@ -20,10 +20,6 @@ import { UserContext } from "../context/userContext";
 import { setAuthToken } from "../config/api";
 
 function DropDown(props) {
-  // const dataId = JSON.parse(localStorage.getItem("DataId"));
-  // const status = JSON.parse(localStorage.getItem("UserSignUp"));
-  // const { id } = useParams();
-  // const navigate = useNavigate();
   const [state, dispatch] = useContext(UserContext);
 
   let navigate = useNavigate();
@@ -85,7 +81,6 @@ function DropDown(props) {
                 <img className="pe-2" src={Bill} alt="" />
                 <span style={{ color: "black" }}> History</span>
               </Dropdown.Item>
-              {/* <Dropdown.Divider /> */}
             </>
           ) : (
             <>
