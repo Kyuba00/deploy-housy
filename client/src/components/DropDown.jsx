@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Image from "react-bootstrap/Image";
 
-import Image from "../assets/images/img.jpg";
+import Img from "../assets/images/img.jpg";
 import Profile from "../assets/images/user2.png";
 import Cabin from "../assets/images/cabin.png";
 import Calender from "../assets/images/calendar.png";
@@ -48,7 +48,7 @@ function DropDown(props) {
           style={{ width: "50px", height: "50px" }}
           variant="black"
         >
-          <Image roundedCircle className="si" src={Image} />
+          <Image roundedCircle className="si" src={Img} />
         </DropdownToggle>
         <DropdownMenu>
           <Dropdown.Item
