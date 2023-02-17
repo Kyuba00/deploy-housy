@@ -46,15 +46,17 @@ function AddProperty() {
         newAmenities = newAmenities.filter((amen) => amen !== value);
       }
       setForm({ ...form, amenities: newAmenities });
+    } else {
+      setForm({
+        ...form,
+        [name]: type === "file" ? e.target.files : e.target.value,
+      });
     }
-  };
-
-  const handleChangePhoto = (e) => {
-    const type  = e.target;
-    setForm({
-      ...form,
-      [e.target.name]: type === "file" ? e.target.files : e.target.value,
-    });
+    if (e.target.type === "file") {
+      let url = URL.createObjectURL(e.target.files[0]);
+      console.log("ini data blob", url);
+      setPreview(url);
+    }
   };
 
   const handleSubmit = useMutation(async (e) => {
@@ -108,7 +110,7 @@ function AddProperty() {
             id="upload"
             name="image"
             hidden
-            onChange={handleChangePhoto}
+            onChange={handleChange}
           />
           <Form.Group controlId="upload" className="mb-3">
             <Form.Label className="fw-bold">Upload file</Form.Label>
