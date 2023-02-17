@@ -29,8 +29,6 @@ function Navigate(props) {
   return (
     <>
     <Container fluid>
-      {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-    <Navbar.Collapse id="responsive-navbar-nav"> */}
     <Navbar fixed='top' className='bg-white mb-5'>
       <Row className="w-100">
         <Col >

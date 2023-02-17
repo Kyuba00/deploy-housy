@@ -17,12 +17,9 @@ function AddProperty() {
 
 
 
-  // const [amenities, setAmenities] = useState([]); //Store all category data
-  // const [amenitiesId, setAmenitiesId] = useState([]); //Save the selected category id
   const navigate = useNavigate();
-  const [preview, setPreview] = useState(null); //For image preview
+  const [preview, setPreview] = useState(null); 
 
-  // Create variabel for store data with useState here ...
   const [form, setForm] = useState({
     image: "",
     nameProperty: "",
@@ -37,18 +34,6 @@ function AddProperty() {
     area: "",
   });
 
-  // Fetching amenities data
-  // const getAmenities = async () => {
-  //   try {
-  //     const response = await API.get("/houses");
-  //     setAmenities(response.data.data.amenities);
-  //     console.log("ini amen", response.data.data.amenities);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // For handle if category selected
   const handleCheckboxChange = (event) => {
     setForm({
       ...form,
@@ -58,10 +43,6 @@ function AddProperty() {
 
   // Handle change data on form
   const handleChange = (e) => {
-    // setForm({
-    //   ...form,
-    //   [e.target.name]: e.target.type === "file" ? e.target.files : e.target.value,
-    // });
 
     const { name, value, type, checked } = e.target;
     if (type === "checkbox") {
@@ -145,9 +126,6 @@ function AddProperty() {
             <Form.Label className="fw-bold">Upload file</Form.Label>
             <Form.Control style={{ backgroundColor: "white"}} name="image" type="file" className="rs bgad" onChange={handleChange} />
           </Form.Group>
-          {/* <label for="upload" className="label-file-add-product fw-bold">
-            Upload file
-          </label> */}
           <Form.Group
             className="mb-3"
             controlId="nameProperty"
@@ -212,7 +190,6 @@ function AddProperty() {
               type="checkbox"
               label="Shared Accomodation"
             />
-            {/* <Form.Check type="checkbox" label="Furnished" /> */}
           </Form.Group>
           <Form.Group className="mb-3" controlId="city">
             <Form.Label className="fw-bold">City</Form.Label>

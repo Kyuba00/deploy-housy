@@ -59,7 +59,6 @@ export default function SignUp(props) {
     }
   });
 
-
   return (
     <>
       <div className="px-5">

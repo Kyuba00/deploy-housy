@@ -1,5 +1,4 @@
 import "../style/style.css";
-// import React, { useState } from 'react';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -7,13 +6,10 @@ import { useContext, useState } from "react";
 import { UserContext } from "../context/userContext";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-// import { json } from 'react-router-dom';
 import { API, setAuthToken } from "../config/api";
 
 export default function SignIn(props) {
   const navigate = useNavigate();
-  // const dataString = localStorage.getItem("UserSignUp");
-  // const dataUser = JSON.parse(dataString);
 
   const [state, dispatch] = useContext(UserContext);
 
@@ -34,38 +30,19 @@ export default function SignIn(props) {
       e.preventDefault();
 
       const response = await API.post("/sign-in", userSignIn);
-      setAuthToken(response.data.data.token)
+      setAuthToken(response.data.data.token);
       dispatch({
         type: "LOGIN_SUCCESS",
         payload: response.data.data,
       });
       alert("login success");
       props.onHide();
-      console.log("ini response" , response)
+      console.log("ini response", response);
     } catch (error) {
       alert("username or password wrong!");
       console.log(error);
     }
   });
-
-  // const handleOnSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   if (dataUser.userName === props.userSignIn.userName && dataUser.password === props.userSignIn.password) {
-  //     e.preventDefault();
-  //     props.setUserSignIn({
-  //       ...props.userSignIn,
-  //       isLogin: true,
-  //       //
-  //       listAs : dataUser.listAs,
-  //     });
-  //     localStorage.setItem("UserSignIn", JSON.stringify(props.userSignIn));
-  //     alert("login succses!");
-  //     props.onHide();
-  //   } else {
-  //     alert("email or password wrong!");
-  //   }
-  // };
 
   const redirectSignup = (e) => {
     props.onHide();

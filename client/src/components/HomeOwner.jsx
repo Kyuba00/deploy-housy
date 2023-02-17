@@ -2,7 +2,6 @@ import Container from "react-bootstrap/esm/Container";
 import Table from "react-bootstrap/Table";
 import Navbar from "../components/Navbar";
 import NavigateDetailProperty from "./NavbarDetailProperty";
-// import DataUsers from "../assets/datas/DataUser";
 import magnifiyIc from "../assets/images/magnifiyIc.svg";
 import { useEffect } from "react";
 import { useContext } from "react";
@@ -38,7 +37,6 @@ function HomeOwner(props) {
             </tr>
           </thead>
           <tbody>
-            {/* {DataUsers.map((e, i) => { */}
             {transactions?.map((value, i) =>{
               return (
                 <tr style={{textAlign: 'center', fontWeight: 'bold'}}>

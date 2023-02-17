@@ -1,26 +1,27 @@
-import { Container, Button, Row, Col } from "react-bootstrap"
+import { Container, Button, Row, Col } from "react-bootstrap";
 import Logo from "../assets/images/Icon.svg";
 import Bukti from "../assets/images/Bukti.jpg";
 import Navbar from "../components/Navbar";
-// import listData from "./data";
-// import { useState } from "react"
-// import { useParams } from "react-router-dom";
 import Kosong from "../assets/images/kosong.jpg";
 import Isi from "../assets/images/isi.jpg";
 import Garis from "../assets/images/garis.jpg";
-// import { useEffect } from "react";
 import React from "react";
-// import Bugis from "../images/bulatgaris.png";
-
 
 function MyBooking(props) {
-
-    return (
-
-<div style={{marginTop:"9rem"}}>
-        <Navbar userSignIn={props.userSignIn} setUserSignIn={props.setUserSignIn} />
-        <Container className="myc fmb" style={{ width: "60%", marginTop: "200px" }}>
-        <div className="border border-3 p-4 pe-0 pb-0" style={{backgroundColor:"white"}}>
+  return (
+    <div style={{ marginTop: "9rem" }}>
+      <Navbar
+        userSignIn={props.userSignIn}
+        setUserSignIn={props.setUserSignIn}
+      />
+      <Container
+        className="myc fmb"
+        style={{ width: "60%", marginTop: "200px" }}
+      >
+        <div
+          className="border border-3 p-4 pe-0 pb-0"
+          style={{ backgroundColor: "white" }}
+        >
           <Row style={{}} className="d-flex jcb">
             <Col className="" md="auto" lg={4}>
               <img src={Logo} alt="" />
@@ -33,7 +34,10 @@ function MyBooking(props) {
           <Row style={{}} className="d-flex jcb align-items-center pb-3">
             <Col className="" md="auto" lg={4}>
               <h5 className="fw-bold">House Astina</h5>
-              <p>Jl. Elang IV Perum Permata Bintaro Residence, Tangerang Selatan, Pondok Aren</p>
+              <p>
+                Jl. Elang IV Perum Permata Bintaro Residence, Tangerang Selatan,
+                Pondok Aren
+              </p>
               <p className="w-50 text-center p-1 bg-opacity-10 text-danger"></p>
               <p className="bg-warning w-50 text-center p-1 bg-opacity-10 text-warning"></p>
             </Col>
@@ -72,7 +76,11 @@ function MyBooking(props) {
                 </div>
               </div>
             </Col>
-            <Col className="d-flex flex-column justify-content-center align-items-center gap-2" md="auto" lg={4}>
+            <Col
+              className="d-flex flex-column justify-content-center align-items-center gap-2"
+              md="auto"
+              lg={4}
+            >
               <img src={Bukti} alt="" style={{ width: 150 }} />
               <Button
                 type="submit"
@@ -136,18 +144,17 @@ function MyBooking(props) {
                 <p className=" m-0 ps-3 py-2">Total</p>
               </Col>
               <Col className="d-flex align-items-center" lg={2}>
-              <p className="m-0 text-danger fw-bold">: Rp.3.000.000</p>
-                
+                <p className="m-0 text-danger fw-bold">: Rp.3.000.000</p>
               </Col>
             </Row>
           </Row>
         </div>
         <div className="d-flex justify-content-end mt-3 pb-5 gap-5">
-            <Button className="px-4 btn-danger fw-bold">Cancel</Button>
-            <Button className="px-4 btn-success fw-bold">Approve</Button>
+          <Button className="px-4 btn-danger fw-bold">Cancel</Button>
+          <Button className="px-4 btn-success fw-bold">Approve</Button>
         </div>
       </Container>
-</div> 
-    );
+    </div>
+  );
 }
 export default MyBooking;

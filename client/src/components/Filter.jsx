@@ -1,5 +1,4 @@
 import "../style/style.css";
-// import Container from 'react-bootstrap/Container';
 import {
   Row,
   Col,
@@ -8,10 +7,8 @@ import {
   Button,
   InputGroup,
 } from "react-bootstrap";
-// import { MdDateRange } from 'react-icons/md';
 import "../style/style.css";
 import React, { useState } from "react";
-// import { ImCalendar } from 'react-icons/im';
 import "../style/style.css";
 //
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
@@ -51,7 +48,6 @@ function Filter() {
             </ToggleButton>
             <ToggleButton
               variant="outline-primary"
-              // style={{ backgroundColor: "red" }}
               className="fw-semibold text-dark bd rounded-2 bg w-100"
               id="typeOfRent-3"
               value={3}

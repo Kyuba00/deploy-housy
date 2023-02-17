@@ -1,9 +1,8 @@
-import { Container, Button, Col, Row, } from "react-bootstrap";
+import { Container, Button, Col, Row } from "react-bootstrap";
 import Logo from "../assets/images/Icon.svg";
 import Navbar from "../components/Navbar";
 import NavigateDetailProperty from "./NavbarDetailProperty";
 import "../style/style.css";
-// import { useState } from "react"
 import convertRupiah from "rupiah-format";
 import Kosong from "../assets/images/kosong.jpg";
 import Isi from "../assets/images/isi.jpg";
@@ -22,7 +21,6 @@ function MyBookingTenant(props) {
 
   const [state, dispatch] = useContext(UserContext);
 
-  // Fetching product data from database
   let { data: transactions } = useQuery("transactionsCache", async () => {
     const response = await API.get("/transactions");
     return response.data.data;
@@ -78,9 +76,6 @@ function MyBookingTenant(props) {
                     >
                       {value.status_payment}
                     </p>
-                    {/* <p className="bg-success w-50 text-center p-1 bg-opacity-10 text-success">
-                Approve
-              </p> */}
                   </Col>
                   <Col className="" md="auto" lg={4}>
                     <div className="d-flex flex-column ">
@@ -129,10 +124,6 @@ function MyBookingTenant(props) {
                       className="position-relative p-0 m-0 bg text-dark bd"
                       variant="outline-primary"
                     ></Button>
-                    {/* <Form.Group controlId="formFile" className="mb-3">
-              <Form.Label>upload proof of payment</Form.Label>
-              <Form.Control type="file" />
-            </Form.Group> */}
                   </Col>
                 </Row>
                 <Row className="d-flex">

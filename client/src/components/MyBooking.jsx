@@ -3,11 +3,9 @@ import Logo from "../assets/images/Icon.svg";
 import Bukti from "../assets/images/Bukti.jpg";
 import Navbar from "../components/Navbar";
 import NavigateDetailProperty from "./NavbarDetailProperty";
-import listData from "../assets/datas/data";
 import { useState } from "react";
 import { UserContext } from "../context/userContext";
 import { useContext } from "react";
-// import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
 import Kosong from "../assets/images/kosong.jpg";
 import Qr from "../assets/images/Bukti.jpg";
@@ -60,30 +58,26 @@ function MyBooking(props) {
         attachment: "image.png",
       });
 
-      const tokenBaru = response.data.data.token;
-      console.log("habis add transaction tokennnnnn : ", response);
+      const newToken = response.data.data.token;
+      console.log("token add transaction : ", response);
 
       // const token = response.data.data.token;
-      console.log("ini tokennnnn", response);
-      console.log("ini tokennnnnbaru", tokenBaru);
+      console.log("this is token", response);
+      console.log("new token", newToken);
 
-      window.snap.pay(tokenBaru, {
+      window.snap.pay(newToken, {
         onSuccess: function (result) {
-          /* You may add your own implementation here */
           console.log(result);
           history.push("/profile");
         },
         onPending: function (result) {
-          /* You may add your own implementation here */
           console.log(result);
           history.push("/profile");
         },
         onError: function (result) {
-          /* You may add your own implementation here */
           console.log(result);
         },
         onClose: function () {
-          /* You may add your own implementation here */
           alert("you closed the popup without finishing the payment");
         },
       });
@@ -93,15 +87,11 @@ function MyBooking(props) {
   });
 
   useEffect(() => {
-    //change this to the script source you want to load, for example this is snap.js sandbox env
     const midtransScriptUrl = "https://app.sandbox.midtrans.com/snap/snap.js";
-    //change this according to your client-key
     const myMidtransClientKey = process.env.REACT_APP_MIDTRANS_CLIENT_KEY;
 
     let scriptTag = document.createElement("script");
     scriptTag.src = midtransScriptUrl;
-    // optional if you want to set script attribute
-    // for example snap.js have data-client-key attribute
     scriptTag.setAttribute("data-client-key", myMidtransClientKey);
 
     document.body.appendChild(scriptTag);
@@ -189,22 +179,6 @@ function MyBooking(props) {
               lg={4}
             >
               <img src={Qr} alt="" style={{ width: 150 }} />
-              {/* <Button
-                type="submit"
-                //onSubmit={handleChangePhoto}
-                className="position-relative p-0 m-0 bg text-dark bd"
-                variant="outline-primary"
-              >
-                <input
-                  className="d-block position-absolute h-100 w-100"
-                  id="formFile"
-                  type="file"
-                  name="image"
-                  //         onChange={handleChangePhoto}
-                  style={{ cursor: "pointer", opacity: 0 }}
-                />
-                <span className="d-block py-2 px-3">Upload Image</span>
-              </Button> */}
             </Col>
           </Row>
           <Row className="d-flex">
@@ -273,8 +247,6 @@ function MyBooking(props) {
           >
             Pay
           </Button>
-          {/* {!localStorage.getItem("statusPay") ? <Results /> : null} */}
-          {/* <PayModal show={modalShow} onHide={() => setModalShow(false)} /> */}
         </div>
       </Container>
     </div>

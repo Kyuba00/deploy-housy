@@ -2,24 +2,19 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import "../style/style.css";
-// import ListData from '../assets/datas/data';
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { API } from "../config/api";
 import convertRupiah from "rupiah-format";
-// import { useParams } from "react-router-dom";
 
 function Content() {
   const navigate = useNavigate();
-  // const { id } = useParams();
 
   let { data: houses } = useQuery("housesCache", async () => {
     const response = await API.get("/houses");
 
     return response.data.data;
   });
-  // const tol = houses.id
-  // console.log(tol)
 
   return (
     <>
@@ -50,7 +45,7 @@ function Content() {
                   />
                   <Card.Body className=" bs m-0 p-0 d-flex flex-column gap-1">
                     <Card.Title className="fs18 fw-semibold m-0 p-0 mt-2">
-                    {convertRupiah.convert(value.price)} / {value.type_rent}
+                      {convertRupiah.convert(value.price)} / {value.type_rent}
                     </Card.Title>
                     <Card.Text className="fs10 m-0 p-0 fw-bold">
                       {`${value.bedroom} Beds, ${value.bathroom} Baths, ${value.area} ft `}
