@@ -92,21 +92,21 @@ func (h *handlerHouse) CreateHouse(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var ctx = context.Background() 
-   var CLOUD_NAME = os.Getenv("CLOUD_NAME") 
-   var API_KEY = os.Getenv("API_KEY") 
-   var API_SECRET = os.Getenv("API_SECRET") 
-  // get image filepath 
-  dataContex := r.Context().Value("dataFile") 
-  filepath := dataContex.(string) 
-  // Add your Cloudinary credentials ... 
-  cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET) 
- 
-  // Upload file to Cloudinary ... 
-  resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "uploads"}) 
-  if err != nil { 
-    fmt.Println(err.Error()) 
-  }
+	var ctx = context.Background()
+	var CLOUD_NAME = os.Getenv("CLOUD_NAME")
+	var API_KEY = os.Getenv("API_KEY")
+	var API_SECRET = os.Getenv("API_SECRET")
+	// get image filepath
+	dataContex := r.Context().Value("dataFile")
+	filepath := dataContex.(string)
+	// Add your Cloudinary credentials ...
+	cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
+
+	// Upload file to Cloudinary ...
+	resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "uploads"})
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 
 	house := models.House{
 		Name:        request.Name,
@@ -120,7 +120,6 @@ func (h *handlerHouse) CreateHouse(w http.ResponseWriter, r *http.Request) {
 		Description: request.Description,
 		Area:        request.Area,
 		Image:       resp.SecureURL,
-
 	}
 
 	// err := mysql.DB.Create(&product).Error
@@ -132,7 +131,14 @@ func (h *handlerHouse) CreateHouse(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	house, _ = h.HouseRepository.GetHouse(house.ID)
+	house, err = h.HouseRepository.GetHouse(house.ID)
+	house.Image = os.Getenv("PATH_FILE") + house.Image
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		response := dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()}
+		json.NewEncoder(w).Encode(response)
+		return
+	}
 
 	w.WriteHeader(http.StatusOK)
 	response := dto.SuccessResult{Code: http.StatusOK, Data: house}
