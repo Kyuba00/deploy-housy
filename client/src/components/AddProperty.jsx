@@ -58,7 +58,6 @@ function AddProperty() {
       setPreview(url);
     }
   };
-
   const handleSubmit = useMutation(async (e) => {
     try {
       e.preventDefault();
