@@ -1,13 +1,10 @@
 import Home from "./pages/Home";
 import React, { useContext, useEffect, useState } from "react";
-// import Navigate from './components/Navbar';
 import MyBookingIn from "./components/MyBookingIn";
 import AddProperty from "./components/AddProperty";
 import HomeOwner from "./components/HomeOwner";
-// import listData from "./assets/datas/data";
 import Profile from "./components/Profile";
 import InvoiceOwner from "./components/InvoiceOwner";
-// import HomeLogin from './pages/HomeLogin';
 import MyBooking from "./components/MyBooking";
 import MyBookingNext from "./components/MyBookingNext";
 import Invoice from "./components/Invoice";
@@ -16,23 +13,13 @@ import MyBookingTenant from "./components/MyBookingTenant";
 import "./App.css";
 import { API, setAuthToken } from "./config/api";
 import { Routes, Route, useNavigate } from "react-router-dom";
-// import { useContext } from "react";
-// import { useNavigate } from "react-router-dom";
 import { UserContext } from "../src/context/userContext";
-// import IndexOwner from './components/IndexOwner';
-
-// const [userSignIn, setUserSignIn] = useState ({
-//   isLogin: false,
-//   userName: "",
-//   password: "",
-// });
 
 function App() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
 
   const [state, dispatch] = useContext(UserContext);
-  // console.log(state.user.listAsRole)
   useEffect(() => {
     if (state.isLogin == false && !isLoading) {
       navigate("/");
@@ -59,8 +46,6 @@ function App() {
       console.log(response.data.data);
 
       let payload = response.data.data;
-
-      // payload.token = localStorage.token;
 
       dispatch({
         type: "USER_SUCCESS",
