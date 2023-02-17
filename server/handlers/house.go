@@ -14,7 +14,6 @@ import (
 
 	"github.com/cloudinary/cloudinary-go"
 	"github.com/cloudinary/cloudinary-go/api/uploader"
-	"github.com/go-playground/validator/v10"
 	"github.com/gorilla/mux"
 	"gorm.io/datatypes"
 )
@@ -66,6 +65,23 @@ func (h *handlerHouse) GetHouse(w http.ResponseWriter, r *http.Request) {
 func (h *handlerHouse) CreateHouse(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
+	// get image filepath
+	dataContex := r.Context().Value("dataFile")
+	filepath := dataContex.(string)
+
+	var ctx = context.Background()
+	var CLOUD_NAME = os.Getenv("CLOUD_NAME")
+	var API_KEY = os.Getenv("API_KEY")
+	var API_SECRET = os.Getenv("API_SECRET")
+	// Add your Cloudinary credentials ...
+	cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
+
+	// Upload file to Cloudinary ...
+	resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "uploads"})
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
 	price, _ := strconv.Atoi(r.FormValue("price"))
 	Bedroom, _ := strconv.Atoi(r.FormValue("Bedroom"))
 	Bathroom, _ := strconv.Atoi(r.FormValue("Bathroom"))
@@ -81,32 +97,17 @@ func (h *handlerHouse) CreateHouse(w http.ResponseWriter, r *http.Request) {
 		Bedroom:     Bedroom,
 		Price:       price,
 		Bathroom:    Bathroom,
+		Image:       resp.SecureURL,
 	}
 
-	validation := validator.New()
-	err := validation.Struct(request)
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		response := dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()}
-		json.NewEncoder(w).Encode(response)
-		return
-	}
-
-	var ctx = context.Background()
-	var CLOUD_NAME = os.Getenv("CLOUD_NAME")
-	var API_KEY = os.Getenv("API_KEY")
-	var API_SECRET = os.Getenv("API_SECRET")
-	// get image filepath
-	dataContex := r.Context().Value("dataFile")
-	filepath := dataContex.(string)
-	// Add your Cloudinary credentials ...
-	cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
-
-	// Upload file to Cloudinary ...
-	resp, err := cld.Upload.Upload(ctx, filepath, uploader.UploadParams{Folder: "uploads"})
-	if err != nil {
-		fmt.Println(err.Error())
-	}
+	// validation := validator.New()
+	// err := validation.Struct(request)
+	// if err != nil {
+	// 	w.WriteHeader(http.StatusInternalServerError)
+	// 	response := dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()}
+	// 	json.NewEncoder(w).Encode(response)
+	// 	return
+	// }
 
 	house := models.House{
 		Name:        request.Name,
