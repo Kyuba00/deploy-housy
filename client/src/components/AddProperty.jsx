@@ -54,11 +54,6 @@ function AddProperty() {
       ...form,
       [e.target.name]: type === "file" ? e.target.files : e.target.value,
     });
-    if (e.target.type === "file") {
-      let url = URL.createObjectURL(e.target.files[0]);
-      console.log("ini data blob", url);
-      setPreview(url);
-    }
   };
 
   const handleSubmit = useMutation(async (e) => {
