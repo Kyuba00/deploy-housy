@@ -132,14 +132,14 @@ func (h *handlerHouse) CreateHouse(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	house, err = h.HouseRepository.GetHouse(house.ID)
-	house.Image = os.Getenv("PATH_FILE") + house.Image
-	if err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		response := dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()}
-		json.NewEncoder(w).Encode(response)
-		return
-	}
+	house, _ = h.HouseRepository.GetHouse(house.ID)
+	// house.Image = os.Getenv("PATH_FILE") + house.Image
+	// if err != nil {
+	// 	w.WriteHeader(http.StatusBadRequest)
+	// 	response := dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()}
+	// 	json.NewEncoder(w).Encode(response)
+	// 	return
+	// }
 
 	w.WriteHeader(http.StatusOK)
 	response := dto.SuccessResult{Code: http.StatusOK, Data: house}
