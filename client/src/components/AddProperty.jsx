@@ -50,6 +50,7 @@ function AddProperty() {
   };
 
   const handleChangePhoto = (e) => {
+    const type  = e.target;
     setForm({
       ...form,
       [e.target.name]: type === "file" ? e.target.files : e.target.value,
