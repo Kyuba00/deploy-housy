@@ -37,7 +37,7 @@ function AddProperty() {
     });
   };
   const handleChange = (e) => {
-    const { value, type, checked } = e.target;
+    const { name, value, type, checked } = e.target;
     if (type === "checkbox") {
       let newAmenities = [...form.amenities];
       if (checked) {
