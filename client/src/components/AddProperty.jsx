@@ -60,7 +60,7 @@ function AddProperty() {
     console.log("ini data blob", url);
     setPreview(url);
   }
-}
+
 
 const handleSubmit = useMutation(async (e) => {
   try {
@@ -298,5 +298,6 @@ return (
     </Container>
   </>
 );
+}
 
 export default AddProperty;
