@@ -19,8 +19,6 @@ import (
 	"gorm.io/datatypes"
 )
 
-// var path_file = "http://localhost:5000/uploads/"
-
 type handlerHouse struct {
 	HouseRepository repositories.HouseRepository
 }
@@ -52,7 +50,6 @@ func (h *handlerHouse) GetHouse(w http.ResponseWriter, r *http.Request) {
 
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
 
-	// var profile models.Profile
 	house, err := h.HouseRepository.GetHouse(id)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
@@ -61,8 +58,6 @@ func (h *handlerHouse) GetHouse(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// house.Image = path_file + house.Image
-
 	w.WriteHeader(http.StatusOK)
 	response := dto.SuccessResult{Code: http.StatusOK, Data: convertResponseHouse(house)}
 	json.NewEncoder(w).Encode(response)
@@ -70,11 +65,6 @@ func (h *handlerHouse) GetHouse(w http.ResponseWriter, r *http.Request) {
 
 func (h *handlerHouse) CreateHouse(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-
-	// Get dataFile from midleware and store to filename variable here ...
-
-	// dataContex := r.Context().Value("dataFile") // add this code
-	// filename := dataContex.(string)             // add this code
 
 	price, _ := strconv.Atoi(r.FormValue("price"))
 	Bedroom, _ := strconv.Atoi(r.FormValue("Bedroom"))
@@ -88,7 +78,6 @@ func (h *handlerHouse) CreateHouse(w http.ResponseWriter, r *http.Request) {
 		Description: r.FormValue("description"),
 		Area:        r.FormValue("area"),
 		Amenities:   datatypes.JSON(r.FormValue("amenities")),
-		// Image:       r.FormValue("image"),
 		Bedroom:     Bedroom,
 		Price:       price,
 		Bathroom:    Bathroom,

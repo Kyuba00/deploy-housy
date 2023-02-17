@@ -1,18 +1,18 @@
 import Navbar from "./Navbar";
 import ChangePassword from "./ChangePassword";
-import NavigateDetailProperty from "./NavbarDetailProperty";
 import { Button, Container, Row, Col } from "react-bootstrap";
-import React, { useContext, useEffect, useState } from "react";
-
+import React, { useContext, useEffect } from "react";
+// IMPORT IMAGES
 import Name from "../assets/images/IP.png";
 import Email from "../assets/images/Email.png";
 import Phone from "../assets/images/Phone.png";
 import Place from "../assets/images/Tendant.png";
-import Image from "../assets/images/img.jpg";
+import Img from "../assets/images/img.jpg";
 import Ad from "../assets/images/Lock.jpg";
 import G from "../assets/images/Gender.png";
 import Password from "../assets/images/Pass.png";
 import { UserContext } from "../context/userContext";
+import { useState } from "react";
 
 export default function Profile(props) {
   useEffect(() => {
@@ -20,9 +20,8 @@ export default function Profile(props) {
   });
 
   const [state, useState] = useContext(UserContext);
-  const [show, setShow] = useState(false);
   console.log(state.user);
-  const [modalShow, setModalShow] = useState(false);
+  const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <div className="" style={{ marginTop: "9rem" }}>
@@ -66,6 +65,10 @@ export default function Profile(props) {
                 </div>
               </div>
             </div>
+            {/* <div className="d-flex flex-column">
+                <span className="p-0 m-0" fw-bold>Change Password</span>
+                <span className="fs14 text-secondary">Password</span>
+              </div> */}
             <div className="d-flex align-items-center gap-3">
               <img width={39} src={Place} alt="" />
               <div className="d-flex flex-column">
@@ -99,12 +102,10 @@ export default function Profile(props) {
           </Col>
           <Col className=" d-flex flex-column gap-3 px-3 me-2" sm={4}>
             <div>
-              <img className="w-100 rounded pt-4" src={Image} alt="" />
+              <img className="w-100 rounded pt-4" src={Img} alt="" />
             </div>
             <div>
-              <Button className="w-100" onClick={() => setShow(true)}>
-                Change Foto Profile
-              </Button>
+              <Button className="w-100">Change Foto Profile</Button>
             </div>
           </Col>
         </Row>
