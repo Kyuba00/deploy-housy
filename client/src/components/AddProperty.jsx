@@ -7,7 +7,6 @@ import { useState } from "react";
 import { useMutation } from "react-query";
 import { API } from "../config/api";
 import NavigateDetailProperty from "./NavbarDetailProperty";
-// import { Alert } from "bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function AddProperty() {
@@ -15,11 +14,8 @@ function AddProperty() {
     document.body.style.background = "rgba(196, 196, 196, 0.25)";
   });
 
-
-
   const navigate = useNavigate();
-  const [preview, setPreview] = useState(null); 
-
+  const [preview, setPreview] = useState(null);
   const [form, setForm] = useState({
     image: "",
     nameProperty: "",
@@ -40,10 +36,7 @@ function AddProperty() {
       amenities: [event.target.checked],
     });
   };
-
-  // Handle change data on form
   const handleChange = (e) => {
-
     const { name, value, type, checked } = e.target;
     if (type === "checkbox") {
       let newAmenities = [...form.amenities];
@@ -59,16 +52,12 @@ function AddProperty() {
         [name]: type === "file" ? e.target.files : e.target.value,
       });
     }
-
-    // Create image url for preview
     if (e.target.type === "file") {
       let url = URL.createObjectURL(e.target.files[0]);
       console.log("ini data blob", url);
       setPreview(url);
     }
   };
-
-  // Create function for handle insert product data with useMutation here ...
   const handleSubmit = useMutation(async (e) => {
     try {
       e.preventDefault();
@@ -89,7 +78,7 @@ function AddProperty() {
       const response = await API.post("/house", formData);
       console.log("berhasil menambahkan product", response);
 
-      navigate(`/index-owner`)
+      navigate(`/index-owner`);
       console.log(form.amenities);
     } catch (err) {
       console.log("gagal upload product", err);
@@ -124,7 +113,13 @@ function AddProperty() {
           />
           <Form.Group controlId="upload" className="mb-3">
             <Form.Label className="fw-bold">Upload file</Form.Label>
-            <Form.Control style={{ backgroundColor: "white"}} name="image" type="file" className="rs bgad" onChange={handleChange} />
+            <Form.Control
+              style={{ backgroundColor: "white" }}
+              name="image"
+              type="file"
+              className="rs bgad"
+              onChange={handleChange}
+            />
           </Form.Group>
           <Form.Group
             className="mb-3"
@@ -190,6 +185,7 @@ function AddProperty() {
               type="checkbox"
               label="Shared Accomodation"
             />
+            {/* <Form.Check type="checkbox" label="Furnished" /> */}
           </Form.Group>
           <Form.Group className="mb-3" controlId="city">
             <Form.Label className="fw-bold">City</Form.Label>
@@ -290,10 +286,7 @@ function AddProperty() {
             />
           </Form.Group>
           <div className="d-flex justify-content-center mt-5">
-            <Button
-              style={{ padding: "8px 100px" }}
-              type="submit"
-            >
+            <Button style={{ padding: "8px 100px" }} type="submit">
               Save
             </Button>
           </div>
@@ -304,4 +297,3 @@ function AddProperty() {
 }
 
 export default AddProperty;
-
